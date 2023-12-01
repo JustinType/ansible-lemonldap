@@ -1,8 +1,23 @@
-- name: Set authentification to AD mode
+- name: Set authentification mode to AD
   command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set authentication 'AD' | /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set userDB 'AD' | /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set passwordDB 'AD'"
 
 - name: Set Ldap Server IP
   command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set ldapServer '{{ ldap_server_ip }}'"
 
 - name: Set Ldap Server Port
-  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set ldapPort '{{ ldap_port }}'"
+  command : "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set ldapPort '{{ ldap_port }}'"
+
+- name: Set Ldap Server Verification
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set ldapVerify '{{ ldap_verification }}'"
+
+- name: Set Ldap Timeout
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set ldapTimeout '{{ ldap_timeout }}'"
+
+- name: Set Ldap Base
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set ldapBase '{{ ldap_base }}'"
+
+- name: Set Ldap Account
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set managerDn '{{ ldap_account }}'"
+
+- name: Set Ldap Password
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set managerPassword '{{ ldap_password }}'"
