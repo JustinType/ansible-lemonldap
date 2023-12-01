@@ -1,0 +1,10 @@
+- name: Install LemonLDAP
+  hosts: localhost
+  become: yes
+  roles:
+    - role: ansible-lemonldapng
+      lemonldap_domain: localhost
+      lemonldap_webserver: "apache"
+  vars:
+    - ldap_server_ip: "ldap://192.168.1.1"
+    - ldap_port: 389

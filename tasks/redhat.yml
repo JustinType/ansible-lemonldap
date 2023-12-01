@@ -1,0 +1,76 @@
+---
+- name: Install LLNG Repository KEY
+  copy:
+    src: rpm-gpg-key-ow2
+    dest: /etc/pki/rpm-gpg/RPM-GPG-KEY-OW2
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Import LLNG GPG KEY
+  rpm_key:
+    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-OW2
+    state: present
+
+- name: Install epel-release
+  yum:
+    name: epel-release
+    state: present
+
+- name: Install LLNG Enterprise Linux Repository
+  copy:
+    src: redhat_lemonldap-ng.repo
+    dest: /etc/yum.repos.d/lemonldap-ng.repo
+    owner: root
+    group: root
+    mode: 0644
+  register: llng_repo
+
+- name: Install Webserver Dependencies (1/2)
+  yum:
+    name:
+      - httpd
+      - mod_perl
+      - mod_fcgid
+      - perl-LWP-Protocol-https
+    state: present
+    update_cache: true
+  when: lemonldap_webserver | default('apache') in [ 'apache', 'httpd' ]
+
+- name: Install Webserver Dependencies (2/2)
+  yum:
+    name:
+      - nginx
+      - lemonldap-ng-fastcgi-server
+      - perl-LWP-Protocol-https
+    state: present
+  when: lemonldap_webserver | default('apache') == 'nginx'
+
+- name: Enable Apache
+  service:
+    name: httpd
+    state: started
+    enabled: true
+  when: lemonldap_webserver | default('apache') in [ 'apache', 'httpd' ]
+
+- name: Enable Nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
+  when: lemonldap_webserver | default('apache') == 'nginx'
+
+- name: Install LLNG
+  yum:
+    name:
+      - lemonldap-ng
+      - lemonldap-ng-fr-doc
+    state: present
+
+- name: Install LLNG Nginx support
+  yum:
+    name:
+      - lemonldap-ng-nginx
+    state: present
+  when:
+    - "lemonldap_webserver == 'nginx'"
