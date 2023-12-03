@@ -44,13 +44,13 @@ Example Playbook
         lemonldap_domain: localhost
         lemonldap_webserver: "apache"
     vars:
-      - ldap_server_ip: "[ip]"  # Ip of your ldap server (i.e: "ldap://192.168.1.5")
-      - ldap_port: [port]  # 389 = ldap / 636 = ldaps
-      - ldap_verification: "[verification]" # can be require, optional, none (for ldaps you need require)
-      - ldap_timeout: [timeout] # recommended: 60 or 120
-      - ldap_base: "[base]" # base for ldap search queries (i.e: "dc=domain,dc=local")
-      - ldap_account: "[account]" # account used for ldap authentication (i.e: "cn=websso,cn=users,dc=domain,dc=local")
-      - ldap_password: "[password]" # password of this account
+      - ldap_server_ip: "ldap://192.168.1.2"
+      - ldap_port: 389 
+      - ldap_verification: "none"
+      - ldap_timeout: 120
+      - ldap_base: "dc=mysuper,dc=domain"
+      - ldap_account: "cn=websso,cn=users,dc=mysuper,dc=domain"
+      - ldap_password: "SuperP@ssw0rd!"
 ```
 
 License
