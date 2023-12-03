@@ -31,6 +31,10 @@ mv roles/ansible-lemonldap/playbook.yaml .
 nano playbook.yaml
 ```
 
+Run playbook
+```
+ansible-playbook playbook.yaml
+```
 
 Configuration: Role Variables
 --------------
