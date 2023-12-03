@@ -6,27 +6,40 @@ This is the ansible LemonLDAP::NG role. It can be used to install LemonLDAP::NG 
 Installation
 ------------
 
+Installation of ansible
 ```
 sudo apt install ansible
+```
+
+Creation of ansible role repository
+```
 cd /home/[user]
 mkdir .ansible
 mkdir .ansible/roles
+```
+
+Get ansible profile
+```
 cd .ansible/roles
 git clone https://github.com/JustinType/ansible-lemonldap
+```
+
+Move and edit playbook
+```
 cd ..
 mv roles/ansible-lemonldap/playbook.yaml .
 nano playbook.yaml
-
 ```
 
-Role Variables
+
+Configuration: Role Variables
 --------------
 
  * `lemonldap_do_soap`, toggles SOAP-related webserver configuration, defaults to `False`.
  * `lemonldap_domain`, the root domain of your LLNG setup, defaults to `changeme.com`.
  * `lemonldap_webserver`, the webserver running LLNG, defaults to `nginx`, could be changed to `apache`.
 
-LDAP Variables
+Configuration: LDAP Variables
 --------------
 
  * `ldap_server_ip`, Ip of your ldap server (i.e: `"ldap://192.168.1.5"`)
@@ -37,11 +50,6 @@ LDAP Variables
  * `ldap_account`, account used for ldap authentication (i.e: `"cn=websso,cn=users,dc=domain,dc=local"`)
  * `ldap_password`, password of this account
 
-
-Dependencies
-------------
-
-None
 
 Example Playbook
 ----------------
