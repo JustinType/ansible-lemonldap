@@ -3,10 +3,21 @@ Ansible LemonLDAP::NG role
 
 This is the ansible LemonLDAP::NG role. It can be used to install LemonLDAP::NG on a server.
 
-Requirements
+Installation
 ------------
 
-Pulling packages from the LLNG repository, which is to be installed by this role.
+```
+sudo apt install ansible
+cd /home/[user]
+mkdir .ansible
+mkdir .ansible/roles
+cd .ansible/roles
+git clone https://github.com/JustinType/ansible-lemonldap
+cd ..
+mv roles/ansible-lemonldap/playbook.yaml .
+nano playbook.yaml
+
+```
 
 Role Variables
 --------------
@@ -24,7 +35,7 @@ LDAP Variables
  * `ldap_timeout`, timeout before ldap deconnexion (recommended: 60 or 120)
  * `ldap_base`, base for ldap search queries (i.e: `"dc=domain,dc=local"`)
  * `ldap_account`, account used for ldap authentication (i.e: `"cn=websso,cn=users,dc=domain,dc=local"`)
- * `ldap_password`, 389 = password of this account
+ * `ldap_password`, password of this account
 
 
 Dependencies
