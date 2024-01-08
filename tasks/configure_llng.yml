@@ -23,13 +23,19 @@
   command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set managerPassword '{{ ldap_password }}'"
 
 - name: Set Custom Main Logo
-  command: "cp skin_customization/{{ custom_main_logo }} /usr/share/lemonldap-ng/portal/htdocs/static/common/logos | /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes set portalMainLogo '{{ custom_main_logo }}'"
+  command: "cp skin_customization/{{ custom_main_logo }} /usr/share/lemonldap-ng/portal/htdocs/static/common/logos"
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes set portalMainLogo '{{ custom_main_logo }}'"
   when: custom_main_logo != 'default'
 
 - name: Set Custom Favicon
-  command: "cp skin_customization/{{ custom_favicon }} /usr/share/lemonldap-ng/portal/htdocs/static/common/logos | /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes set portalFavicon '{{ custom_favicon }}'"
+  command: "cp skin_customization/{{ custom_favicon }} /usr/share/lemonldap-ng/portal/htdocs/static/common/logos"
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes set portalFavicon '{{ custom_favicon }}'"
   when: custom_favicon != 'default'
 
 - name: Set Custom Background
-  command: "cp skin_customization/{{ custom_background }} /usr/share/lemonldap-ng/portal/htdocs/static/common/backgrounds | /usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes set portalSkinBackground '{{ custom_background }}'"
+  command: "cp skin_customization/{{ custom_background }} /usr/share/lemonldap-ng/portal/htdocs/static/common/backgrounds"
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes set portalSkinBackground '{{ custom_background }}'"
   when: custom_background != 'default'
+
+- name: Restart Apache Service
+  command: "systemctl restart apache2.service"
