@@ -33,6 +33,7 @@ nano playbook.yaml
 
 [Optional] Create skin customization folder and put your files here
 ```
+cd roles/ansible-lemonldap
 mkdir skin_customization
 ```
 
@@ -63,7 +64,7 @@ Configuration: Skin Customization [Optional]
 --------------
 
 If you don't want to customize these options, let the value "default"
-Else, all these files must be located in /home/[user]/.ansible/skin_customization (you have to create this folder)
+Else, all these files must be located in /home/[user]/.ansible/roles/ansible-lemonldap/skin_customization (you have to create this folder)
 
  * `custom_main_logo`, filename of your custom logo (will be included in portal template and mail body)
  * `custom_favicon`, filename of your custom favicon
