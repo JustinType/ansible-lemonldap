@@ -63,7 +63,7 @@ Configuration: LDAP Variables
 Configuration: Skin Customization [Optional]
 --------------
 
-If you don't want to customize these options, let the value "default"
+If you don't want to customize these options, let the value "default".
 Else, all these files must be located in /home/[user]/.ansible/roles/ansible-lemonldap/skin_customization (you have to create this folder)
 
  * `custom_main_logo`, filename of your custom logo (will be included in portal template and mail body)
