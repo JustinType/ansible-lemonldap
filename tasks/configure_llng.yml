@@ -22,6 +22,40 @@
 - name: Set Ldap Password
   command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set managerPassword '{{ ldap_password }}'"
 
+- name: Generate  private key and self-signed certificate for SAML Identity Provider
+  command: "openssl req -new -newkey rsa:4096 -keyout saml.key -nodes -out saml.pem -x509 -days 3650 -subj '/C=/ST=/L=/O=/OU=/CN={{ lemonldap_domain }}'"
+  when: activate_SAML == 'yes'
+
+- name: Fixing certificate key format (1/2)
+  command: "sed -e 's/END PRIVATE/END RSA PRIVATE/' -i saml.key"
+  when: activate_SAML == 'yes'
+
+- name: Fixing certificate key format (2/2)
+  command: "sed -e 's/BEGIN PRIVATE/BEGIN RSA PRIVATE/' -i saml.key"
+  when: activate_SAML == 'yes'
+
+- name: Importing private key (1/2)
+  command: "cat saml.key"
+  register: cat_saml_key
+  when: activate_SAML == 'yes'
+
+- name: Importing private key (2/2)
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set samlServicePrivateKeySig '{{ cat_saml_key.stdout }}'"
+  when: activate_SAML == 'yes'
+  
+- name: Importing certificate (1/2)
+  command: "cat saml.pem"
+  register: cat_saml_pem
+  when: activate_SAML == 'yes' 
+  
+- name: Importing certificate (2/2)
+  ansible.builtin.shell: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set samlServicePublicKeySig '{{ cat_saml_pem.stdout  }}'"
+  when: activate_SAML == 'yes'
+  
+- name: Activate SAML
+  command: "/usr/share/lemonldap-ng/bin/lemonldap-ng-cli -yes 1 set issuerDBSAMLActivation 1"
+  when: activate_SAML == 'yes'
+
 - name: Copy Custom Main Logo
   copy: src=skin_customization/{{ custom_main_logo }} dest=/usr/share/lemonldap-ng/portal/htdocs/static/common/logos
   when: custom_main_logo != 'default'

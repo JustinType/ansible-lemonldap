@@ -59,6 +59,7 @@ Configuration: LDAP Variables
  * `ldap_base`, base for ldap search queries (i.e: `"dc=domain,dc=local"`)
  * `ldap_account`, account used for ldap authentication (i.e: `"cn=websso,cn=users,dc=domain,dc=local"`)
  * `ldap_password`, password of this account
+ * `activate_SAML`, activate SAML and generate a self-signed certificate to the server for Identy Provider, can be "yes" or "no"
 
 Configuration: Skin Customization [Optional]
 --------------
@@ -90,6 +91,7 @@ Example Playbook
       - ldap_base: "dc=mysuper,dc=domain"
       - ldap_account: "cn=websso,cn=users,dc=mysuper,dc=domain"
       - ldap_password: "SuperP@ssw0rd!"
+      - activate_SAML: "yes"
       - main_logo: "logo.png"
       - favicon: "favicon.ico"
       - background: "background.png"
