@@ -6,9 +6,9 @@
       lemonldap_domain: localhost
       lemonldap_webserver: "apache"
   vars:
-    - ldap_server_ip: "[ip]"  # Ip of your ldap server (i.e: "ldap://192.168.1.5")
+    - ldap_server_ip: "[ip]"  # Ip of your ldap server (i.e: "ldap://192.168.1.5" / "ldaps://domain.local")
     - ldap_port: [port]  # 389 = ldap / 636 = ldaps
-    - ldap_verification: "[verification]" # can be require, optional, none (for ldaps you need require)
+    - ldap_verification: "[verification]" # can be require, optional, none (can't be require if you have auto-signed certificate)
     - ldap_timeout: [timeout] # recommended: 60 or 120
     - ldap_base: "[base]" # base for ldap search queries (i.e: "dc=domain,dc=local")
     - ldap_account: "[account]" # account used for ldap authentication (i.e: "cn=websso,cn=users,dc=domain,dc=local")
@@ -17,3 +17,6 @@
     - custom_main_logo: "default" # filename of your custom logo (will be included in portal template and mail body), let "default" if you don't want to customize it
     - custom_favicon: "default" # filename of your custom favicon, let "default" if you don't want to customize it
     - custom_background: "default" # filename of your custom background, let "default" if you don't want to customize it
+
+
+
