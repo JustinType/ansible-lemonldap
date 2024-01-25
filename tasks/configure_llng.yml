@@ -82,3 +82,12 @@
 
 - name: Restart Apache Service
   command: "systemctl restart apache2.service"
+  when: lemonldap_webserver == 'apache'
+
+- name: Restart Nginx Service (1/2)
+  command: "sudo systemctl restart lemonldap-ng-fastcgi-server.service"
+  when: lemonldap_webserver == 'nginx'
+
+- name: Restart Nginx Service (2/2)
+  command: "sudo systemctl restart nginx"
+  when: lemonldap_webserver == 'nginx'
