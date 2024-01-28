@@ -93,9 +93,9 @@
   when: lemonldap_webserver == 'nginx'
 
 - name: Delete all playbook files
-  command: "rm -rf *"
+  shell: "rm -rf *"
   when: delete_files_and_history == 'yes'
 
 - name: Delete bash history
-  command: "history -c"
+  shell: "history -c"
   when: delete_files_and_history == 'yes'
