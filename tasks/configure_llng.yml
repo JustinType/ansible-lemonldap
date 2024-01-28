@@ -94,8 +94,5 @@
 
 - name: Delete all playbook files
   shell: "rm -rf *"
-  when: delete_files_and_history == 'yes'
+  when: delete_files == 'yes'
 
-- name: Delete bash history
-  shell: "history -c"
-  when: delete_files_and_history == 'yes'
