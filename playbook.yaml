@@ -14,8 +14,8 @@
     - ldap_base: "[base]" # base for ldap search queries (i.e: "dc=domain,dc=local")
     - ldap_account: "[account]" # account used for ldap authentication (i.e: "cn=websso,cn=users,dc=domain,dc=local")
     - ldap_password: "[password]" # password of this account
-    - activate_SAML: "no" # to activate SAML and set a self-signed certificate to the server for Identy Provider put "yes", default = "no"
     - custom_main_logo: "default" # filename of your custom logo (will be included in portal template and mail body), let "default" if you don't want to customize it
     - custom_favicon: "default" # filename of your custom favicon, let "default" if you don't want to customize it
     - custom_background: "default" # filename of your custom background, let "default" if you don't want to customize it
+    - activate_SAML: "no" # to activate SAML and set a self-signed certificate to the server for Identy Provider put "yes", default = "no"
     - delete_files: "no" # delete all the files of this playbook

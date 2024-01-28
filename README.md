@@ -59,7 +59,11 @@ Configuration: LDAP Variables
  * `ldap_base`, base for ldap search queries (i.e: `"dc=domain,dc=local"`)
  * `ldap_account`, account used for ldap authentication (i.e: `"cn=websso,cn=users,dc=domain,dc=local"`)
  * `ldap_password`, password of this account
+
+Configuration: Other Variables
+--------------
  * `activate_SAML`, activate SAML and generate a self-signed certificate to the server for Identy Provider, can be "yes" or "no"
+ * `delete_files`, delete all playbook files (after running all tasks), can be "yes" or "no"
 
 Configuration: Skin Customization [Optional]
 --------------
@@ -79,22 +83,24 @@ Example Playbook
   - name: Install LemonLDAP
     hosts: localhost
     become: yes
+    no_log: True
     roles:
       - role: ansible-lemonldap
-        lemonldap_domain: localhost
+        lemonldap_domain: mysuper.domain
         lemonldap_webserver: "apache"
     vars:
-      - ldap_server_ip: "ldap://192.168.1.2"
-      - ldap_port: 389 
+      - ldap_server_ip: "ldaps://192.168.1.2"
+      - ldap_port: 636 
       - ldap_verification: "none"
       - ldap_timeout: 120
       - ldap_base: "dc=mysuper,dc=domain"
       - ldap_account: "cn=websso,cn=users,dc=mysuper,dc=domain"
       - ldap_password: "SuperP@ssw0rd!"
-      - activate_SAML: "yes"
       - main_logo: "logo.png"
       - favicon: "favicon.ico"
       - background: "background.png"
+      - activate_SAML: "yes"
+      - delete_files: "yes"
 ```
 
 License
