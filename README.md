@@ -1,7 +1,7 @@
-Ansible LemonLDAP::NG role
+Ansible Playbook for LemonLDAP
 =========
 
-This is the ansible LemonLDAP::NG role. It can be used to install LemonLDAP::NG on a server.
+This is an Ansible playbook to deploy the WebSSO [LemonLDAP](https://lemonldap-ng.org/) on a Linux server. This playbook has been created by 4 students of ENSIBS for the [Locked Shield 2024 exercice](https://ccdcoe.org/news/2024/worlds-most-advanced-cyber-defence-exercise-kicks-off-in-tallinn/).
 
 Installation
 ------------
